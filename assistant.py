@@ -37,20 +37,7 @@ def chat(user_message):
         model="gpt-4o-mini",
         max_tokens=1024,
         response_format={
-        "type": "json_schema",
-        "json_schema": {
-            "name": "assistant_response",
-            "schema": {
-                "type": "object",
-                "properties": {
-                    "reply": {
-                        "type": "string"
-                    }
-                },
-                "required": ["reply"],
-                "additionalProperties": False
-            }
-        }
+        "type": "json_object"       
     },
         messages=[
             {
@@ -62,7 +49,6 @@ def chat(user_message):
     )
 
     reply_json = json.loads(response.choices[0].message.content)
-    print(reply_json)
     reply = reply_json["reply"]
 
     conversation_history.append(
