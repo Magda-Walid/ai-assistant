@@ -1,4 +1,5 @@
 import os
+import json
 from openai import OpenAI
 from dotenv import load_dotenv
 
@@ -12,6 +13,11 @@ SYSTEM_PROMPT = """
 You are a friendly AI programming tutor.
 You explain Python and AI concepts clearly for beginners.
 You speak in a helpful and encouraging way.
+Always respond in JSON format with a single key called reply.
+Example:
+{
+  "reply": "your response here"
+}
 """
 
 # Store conversation history
@@ -28,8 +34,24 @@ def chat(user_message):
     )
 
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
-        max_tokens=200,
+        model="gpt-4o-mini",
+        max_tokens=1024,
+        response_format={
+        "type": "json_schema",
+        "json_schema": {
+            "name": "assistant_response",
+            "schema": {
+                "type": "object",
+                "properties": {
+                    "reply": {
+                        "type": "string"
+                    }
+                },
+                "required": ["reply"],
+                "additionalProperties": False
+            }
+        }
+    },
         messages=[
             {
                 "role": "system",
@@ -39,7 +61,9 @@ def chat(user_message):
         ],
     )
 
-    reply = response.choices[0].message.content
+    reply_json = json.loads(response.choices[0].message.content)
+    print(reply_json)
+    reply = reply_json["reply"]
 
     conversation_history.append(
         {
