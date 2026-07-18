@@ -1,0 +1,57 @@
+{
+  "type": "object",
+  "properties": {
+    "destination": {
+      "type": "string",
+      "description": "The travel destination chosen by the user"
+    },
+    "number_of_days": {
+      "type": "integer",
+      "description": "Number of days for the trip"
+    },
+    "daily_activities": {
+      "type": "array",
+      "description": "Day-by-day travel activities",
+      "items": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "integer",
+            "description": "The day number"
+          },
+          "activities": {
+            "type": "array",
+            "description": "Activities planned for that day",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "day",
+          "activities"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "estimated_budget": {
+      "type": "number",
+      "description": "Estimated total trip cost"
+    },
+    "travel_tips": {
+      "type": "array",
+      "description": "Useful tips for the traveler",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "destination",
+    "number_of_days",
+    "daily_activities",
+    "estimated_budget",
+    "travel_tips"
+  ],
+  "additionalProperties": false
+}
