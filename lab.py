@@ -8,15 +8,8 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-
 SYSTEM_PROMPT = """
 You are a helpful assistant.
-Always respond in JSON format with a single key called reply.
-
-Example:
-{
-  "reply": "your response here"
-}
 """
 
 # Store conversation history
@@ -37,21 +30,33 @@ def chat(user_message):
         model="gpt-4o-mini",
         temperature=0,
         max_tokens=1024,
-        response_format={
-        "type": "json_object"       
-    },
         messages=[
             {
                 "role": "system",
                 "content": SYSTEM_PROMPT
+            },
+            {
+                "role": "user",
+                "content": "apple"
+            },
+            {
+                "role": "assistant",
+                "content": "apple :: noun :: a round fruit that grows on trees :: fruit"
+            },
+            {
+                "role": "user",
+                "content": "river"
+            },
+            {
+                "role": "assistant",
+                "content": "river :: noun :: a large natural stream of water :: nature"
             },
             *conversation_history
         ],
     )
     
 
-    reply_json = json.loads(response.choices[0].message.content)
-    reply = reply_json["reply"]
+    reply = response.choices[0].message.content
 
     conversation_history.append(
         {

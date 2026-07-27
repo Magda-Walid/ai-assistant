@@ -28,4 +28,10 @@ Setting a limit on max_tokens is useful in real applications because it helps co
 
 ## Challenge 4
 
+The format was taught by providing example conversations before the actual user request. The examples were placed in the messages as user and assistant exchanges, showing the model what kind of response pattern to follow.
+
+Showing examples helps the model recognize the pattern and apply it to new inputs without needing a written explanation of the rules.
+
+This technique is called few-shot prompting. It is different from zero-shot prompting because zero-shot gives the model a task without examples, while few-shot provides examples that guide the expected output.
+
 ## Stretch Challenge
