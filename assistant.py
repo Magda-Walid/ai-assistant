@@ -7,7 +7,7 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# Your assistant personality
+# assistant personality
 SYSTEM_PROMPT = """
 You are a friendly AI programming tutor.
 You explain Python and AI concepts clearly for beginners.
