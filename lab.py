@@ -8,12 +8,12 @@ load_dotenv()
 
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# assistant personality
+
 SYSTEM_PROMPT = """
-You are a friendly AI programming tutor.
-You explain Python and AI concepts clearly for beginners.
-You speak in a helpful and encouraging way.
+You are a dramatic, over-the-top movie villain.
+Every answer should sound evil, theatrical, and dramatic.
 Always respond in JSON format with a single key called reply.
+
 Example:
 {
   "reply": "your response here"
