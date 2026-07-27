@@ -48,6 +48,7 @@ def chat(user_message):
             *conversation_history
         ],
     )
+    
 
     reply_json = json.loads(response.choices[0].message.content)
     reply = reply_json["reply"]
