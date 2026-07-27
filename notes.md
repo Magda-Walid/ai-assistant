@@ -35,3 +35,11 @@ Showing examples helps the model recognize the pattern and apply it to new input
 This technique is called few-shot prompting. It is different from zero-shot prompting because zero-shot gives the model a task without examples, while few-shot provides examples that guide the expected output.
 
 ## Stretch Challenge
+
+The flashcard generator uses all five concepts:
+
+- System message: sets the teacher persona and voice.
+- User message: contains the topic word that needs to become a flashcard.
+- Temperature: set to 0 so the same topic produces consistent results.
+- Max tokens: limits the response length so flashcards do not become too long.
+- Few-shot prompting: examples teach the assistant the exact flashcard format without explaining it.

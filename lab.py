@@ -9,10 +9,11 @@ load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 SYSTEM_PROMPT = """
-You are a helpful assistant.
+You are a friendly computer science teacher.
+Always create clear educational flashcards.
 """
 
-# Store conversation history
+
 
 
 
@@ -29,7 +30,7 @@ def chat(user_message):
     response = client.chat.completions.create(
         model="gpt-4o-mini",
         temperature=0,
-        max_tokens=1024,
+        max_tokens=100,
         messages=[
             {
                 "role": "system",
@@ -37,22 +38,25 @@ def chat(user_message):
             },
             {
                 "role": "user",
-                "content": "apple"
+                "content": "Python"
             },
             {
                 "role": "assistant",
-                "content": "apple :: noun :: a round fruit that grows on trees :: fruit"
+                "content": "Python :: Programming Language :: A language used to build software and automate tasks :: Computer Science"
             },
             {
                 "role": "user",
-                "content": "river"
+                "content": "Database"
             },
             {
                 "role": "assistant",
-                "content": "river :: noun :: a large natural stream of water :: nature"
+                "content": "Database :: Storage System :: A place where information is organized and stored for easy access :: Computer Science"
             },
-            *conversation_history
-        ],
+            {
+                "role": "user",
+                "content": user_message
+            }
+        ]
     )
     
 
