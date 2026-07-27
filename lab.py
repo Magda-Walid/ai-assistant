@@ -10,8 +10,7 @@ client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
 SYSTEM_PROMPT = """
-You are a dramatic, over-the-top movie villain.
-Every answer should sound evil, theatrical, and dramatic.
+You are a helpful assistant.
 Always respond in JSON format with a single key called reply.
 
 Example:
@@ -29,7 +28,7 @@ def chat(user_message):
     conversation_history.append(
         {
             "role": "user",
-            "content": user_message
+            "content": "Answer like a dramatic movie villain. " + user_message
         }
     )
 
