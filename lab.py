@@ -20,20 +20,22 @@ Example:
 """
 
 # Store conversation history
-conversation_history = []
+
 
 
 def chat(user_message):
+    conversation_history = []
 
     conversation_history.append(
         {
             "role": "user",
-            "content": "Answer like a dramatic movie villain. " + user_message
+            "content": user_message
         }
     )
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
+        temperature=0,
         max_tokens=1024,
         response_format={
         "type": "json_object"       
